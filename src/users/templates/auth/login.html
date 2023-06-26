@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block title %}Sing In{% endblock %}
+{% block content %}
+    <h1>Welcome Sing In!</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <a href="{% url 'password_reset' %}" style="color: red; text-decoration: none">Reset Password</a> <br> <br>
+        <button class="btn btn-outline-success" type="submit">Submit</button>
+    </form>
+{% endblock %}
