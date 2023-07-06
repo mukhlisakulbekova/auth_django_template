@@ -13,7 +13,7 @@ freeze-req:
 	pip3 freeze > requirements.txt
 
 export-req:
-	poetry export -f requirements.txt --output requirements.txt --without-hashes
+	poetry export --without-hashes --format=requirements.txt > requirements.txt
 
 run:
 	python3 manage.py runserver 127.0.0.1:8000
