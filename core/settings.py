@@ -16,7 +16,7 @@ sys.path.append(os.path.join(BASE_DIR, 'src'))
 SECRET_KEY = env.str('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = env.bool("DEBUG", default=False)
+DEBUG = env.bool("DEBUG", default=True)
 
 ALLOWED_HOSTS = ['*']
 
@@ -73,8 +73,12 @@ WSGI_APPLICATION = 'core.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR + '/db.sqlite3',
+        'ENGINE': env.str('DB_ENGINE', 'django.db.backends.sqlite3'),
+        'NAME': env.str('DB_NAME', BASE_DIR / 'db.sqlite3'),
+        'USER': env.str('DB_USER', 'postgres'),
+        'PASSWORD': env.str('DB_PASSWORD', '1'),
+        'HOST': env.str('DB_HOST', 'localhost'),
+        'PORT': env.str('DB_PORT', 5432)
     }
 }
 
@@ -113,16 +117,15 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = 'static/'
-STATIC_ROOT =  os.path.join(BASE_DIR, '../static')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 MEDIA_URL = 'media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, '../media')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
 
 # SMTP connection
 
