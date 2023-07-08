@@ -10,6 +10,7 @@ packages = [{include = "full_auth_template_django"}]
 python = "^3.11"
 django = "^4.2.2"
 environs = "^9.5.0"
+gunicorn = "^20.1.0"
 
 
 [build-system]
